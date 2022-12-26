@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>助教模擬器</title>
+        <link rel="stylesheet" type="text/css"
+        href="https://fonts.googleapis.com/css?family=Nerko+One">
+        <script type="text/javascript">
+    		function start() {
+                var sound = document.getElementById("div1").addEventListener("mouseover",musicPlay,false);
+                var sound3 = document.getElementById("div3").addEventListener("mouseover",musicPlay,false);
+            }
+            function musicPlay(){
+                if(music.paused)music.play();
+            }
+            window.addEventListener("load", start , false);
+	    </script>
+        <style>
+            body{
+                background-image: url(img/封面圖.png);
+                background-size: 100%;
+                background-repeat: no-repeat;
+                font-family: Noto Sans TC, Nerko One, sans-serif;
+            }
+            div{
+                left:35%;
+                min-width: 30%;
+                width: fit-content;
+                height:fit-content;
+                text-align: center;
+                vertical-align:middle;
+                padding:5px;
+                color:black;
+                font-size: 250%;
+                margin: auto;
+            }
+            .div1{
+                top:60%;
+                position: absolute;
+                cursor: pointer;
+            }
+            .div3{
+                top:70%;
+                position: absolute;
+                cursor: pointer;
+            }
+            .div2{
+                top:80%;
+                position: absolute;
+                cursor: pointer;
+            }
+            .div4{
+                top:90%;
+                position: absolute;
+                cursor: pointer;
+            }
+            a{
+                text-decoration:none;
+                color: black;
+            }
+            .div1:hover,.div2:hover,.div3:hover,.div4:hover{
+                background-color: #F8DAE0;
+                border: 5px rgba(150, 151, 137, 0.82) solid;
+                box-sizing: border-box;
+            }
+        </style>
+    </head>
+    <body>
+        <audio id="music" preload="true"><source src="voice/click.mp3" type="audio/mp3"></audio>
+        <div class="div1" id="div1" onclick="location.href='startgame.html'">Start Game</div>
+        <div class="div3" id="div3" onclick="location.href='rules.html'">Rules Introduction</a></div>
+        <div class="div2" id="div2" onclick="location.href='leaderboard.html'">Scoreboard</div>
+        <div class="div4" id="div4" onclick="location.href='https://github.com/StarStar415/Web-Final-Project-Backend/raw/main/public/%E5%8A%A9%E6%95%99%E6%A8%A1%E6%93%AC%E5%99%A8-01057113%2B01057132.pptx'">Game Introduction</div>
+</html>

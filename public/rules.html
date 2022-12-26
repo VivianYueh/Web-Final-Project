@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css"  href="https://fonts.googleapis.com/css?family=Comfortaa">
+    <title>遊戲規則</title>
+    <style>
+        @import url(https://fonts.googleapis.com/earlyaccess/cwtexfangsong.css);
+        body {
+            min-height: 100%;
+            background: rgba(255, 226, 246, 0.614);
+            font-family: cwTeXFangSong,'Comfortaa', sans-serif;
+            padding-bottom: 40px;
+            user-select: none;
+        }
+        .container {
+            width: 80%;
+            background: rgb(255, 249, 253);
+            box-shadow: 1px 1px 5px #3e3e3ec3;
+            margin: 0px auto 0px;
+            border-radius: 3px;
+            padding: 40px;
+            margin-top: 50px;
+        }
+        #title{
+            font-size: 350%;
+            font-weight: bold;
+            text-align: center;
+        }
+        #rulesTitle{
+            margin: 10px;
+            font-size: 200%;
+            font-weight: bold;
+        }
+        #gametitle{
+            font-size: 160%;
+            font-weight: 500;
+        }
+        #in,li{
+            font-size: 150%;
+        }
+        .return{
+            background: rgb(248, 231, 242);
+            min-width: 8%;
+            text-align: center;
+            width: fit-content;
+            font-size: 250%;
+            border:solid 3px rgb(242, 160, 213);
+            box-shadow: 5px 5px 5px #3e3e3ec3;
+            float: left;
+            padding:5px;
+            
+        }
+        .return:hover{
+            background-color: pink;
+            color: white;
+        }
+        p,ul{
+            margin: 4px;
+        }
+        a{
+            text-decoration: none;
+            width: auto;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="return" onclick="location.href='index.html'">回前頁</div>
+    <div class="container">
+        <div id = "title"><<規則介紹>></div><br>
+        <div id = "rulesTitle">創建人物</div><hr>
+        <div style="display: flex;align-items: center;">
+            <p id="in" >點擊 start game 按鈕後，將會跳轉到創建人物介面。玩家可自選角色。</p>
+            <img src="img/rilakkumaIntroduce.png" width="50%" height="40%">
+        </div>
+        
+        <div id = "rulesTitle">關卡介紹</div><hr>
+        <div id="gametitle">　極限改作文：</div>
+        <div style="display:flex;">
+            <p >　　　</p>
+            <p id="in">　　共分為四種難度關卡，玩家可依自己喜好選擇想要遊玩的關卡，每個關卡將會有不同時間以及不同的作文主題，讓玩家同時體驗當國文助教的感覺以及增強自己的語文知識。</p>
+        </div>
+        <div id="gametitle">　demo計時賽：</div>
+        <div style="display:flex ;">
+            <p >　　　</p>
+            <p id="in">　　共分為四種主題關卡，玩家可依自己喜好選擇想要遊玩的關卡。玩家可依序挑戰不同難度。透過遊戲，讓同學體驗當 demo 助教的忙碌以及學習如何教學他人。</p>
+        </div>
+        <div></div>
+        <div id = "rulesTitle">計分方法、遊玩方法</div><hr>
+        <p id="gametitle">　極限改作文：</p>
+        <div style="display:flex ;">
+            <p >　　　</p>
+            <p id="in">
+                <ul>
+                    <li>依照玩家選擇的關卡難度，會出現不同的時限，玩家需要在時限內完成作文批改的作業。</li>
+                    <li>滑鼠點擊錯誤的字，將錯誤的辭彙都糾正出來吧!</li>
+                    <li>遊玩期間，每答錯一字倒扣2.5，答對一字加2.5分。</li>
+                    <li>最終遊玩分數會附上星星評分以及老師評語，根據遊玩結果會有不同的評價。</li>
+                </ul>
+            </p>
+        </div>
+        <p id="gametitle">　demo計時賽：</p>
+        <div style="display:flex ;">
+            <p >　　　</p>
+            <p id="in">
+                <ul>
+                    <li>依照玩家選的不同難度，挑戰各式主題關卡</li>
+                    <li>依照不同難度挑戰不同解題數量</li>
+                    <li>想辦法以最快的時間完成所有任務吧!</li>
+                </ul>
+            </p>
+        </div>
+        <p id="gametitle">　排行榜：</p>
+        <div style="display:flex ;">
+            <p >　　　</p>
+            <p id="in">
+                <ul>
+                    <li>玩家可自訂姓名將分數紀錄至排行榜</li>
+                    <li>依照玩家挑戰的遊戲主題與難度，與挑戰相同主題的玩家一較高下</li>
+                    <li>挑戰成為排行榜上的第一名吧!</li>
+                </ul>
+            </p>
+        </div>
+    </div>
+</body>
+</html>

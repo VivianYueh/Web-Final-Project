@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DemoGame</title>
+    <link rel="stylesheet" type="text/css"
+          href="https://fonts.googleapis.com/css?family=Comfortaa">
+    <style>
+        @import url(https://fonts.googleapis.com/earlyaccess/cwtexyen.css);
+        body {
+            min-height: 100%;
+            background: rgba(255, 226, 246, 0.614);
+            font-family:cwTexYen,'Comfortaa', sans-serif;
+            padding-bottom: 40px;
+            user-select: none;
+        }
+        .container {
+            width: 80%;
+            background: #F8DAE0;
+            box-shadow: 1px 1px 5px #3e3e3ec3;
+            margin: 0px auto 0px;
+            border-radius: 3px;
+            font-size: 150%;
+        }
+        .containerFinish{
+            width: 50%;
+            margin-top: 25%;
+            transform: translateY(-50%);
+            background: #F8DAE0;
+            box-shadow: 1px 1px 5px #3e3e3ec3;
+            margin: 0px auto;
+            border-radius: 3px;
+            font-size: 200%;
+            text-align: center;
+        }
+        #Question {
+            width: 90%;
+            padding-top: 5%;
+            border-radius: 3px; 
+            margin: 0px 5% 0px;
+            font-size: 130%;
+        }
+        input{
+            cursor: pointer;
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script>
+        let cnt=0;
+        let question;
+        let interval;
+        let numQuestion;
+        let nowans;
+        let solveQuestionNumber=0;
+        let tmp;let Obj;let level;let finishGameCheck=0;
+        let checkQuestion=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+        let objtype=["Chinese","Math","English"];
+        function start(){
+            chooseLevel();
+            let startBottom = document.getElementById("startGame").addEventListener("click",startGame,false);
+            $(document).ready(function(){
+                $("#img1").click(function(){tmp=1;checkAnswer()});
+                $("#img2").click(function(){tmp=2;checkAnswer()});
+                $("#img3").click(function(){tmp=3;checkAnswer()});
+            });
+        }
+        function checkAnswer(){
+            if(finishGameCheck==0){
+                $(document).ready(function(){
+                    $("#container").fadeIn(500);
+                    numQuestion = Math.floor(Math.random()*15);
+                    while(checkQuestion[numQuestion])numQuestion = Math.floor(Math.random()*15);
+                    let type;
+                    if(Obj=="國文")type=0;
+                    if(Obj=="數學")type=1;
+                    if(Obj=="英文")type=2;
+                    if(Obj=="綜合")type=Math.floor(Math.random()*3);
+                    $.getJSON("https://raw.githubusercontent.com/StarStar415/wedFinalProject/main/Question"+objtype[type]+".json", function(result){
+                        $.each(result, function(i, field){
+                            if(i==numQuestion){
+                                document.getElementById("Question").innerHTML=result[i].questionWord+"<br>";
+                                document.getElementById("Question").innerHTML+="(A)"+result[i].answerA+"<br>";
+                                document.getElementById("Question").innerHTML+="(B)"+result[i].answerB+"<br>";
+                                document.getElementById("Question").innerHTML+="(C)"+result[i].answerC+"<br>";
+                                document.getElementById("Question").innerHTML+="(D)"+result[i].answerD+"<br>";
+                                nowans=result[i].finalAnswer;
+                            }
+                        });
+                    });
+                    $("#answerA").click(function(){checkAnswerA()});
+                    $("#answerB").click(function(){checkAnswerB()});
+                    $("#answerC").click(function(){checkAnswerC()});
+                    $("#answerD").click(function(){checkAnswerD()});
+                });
+            }
+        }
+        function chooseLevel(){
+            level = localStorage.getItem("nowChooseLevel");
+            Obj = localStorage.getItem("nowChooseObj");
+            let chooseLevel = document.getElementById("target");
+            document.getElementById("Level").innerHTML=level;
+            document.getElementById("Obj").innerHTML=Obj;
+            if(level=="輕鬆"){chooseLevel.innerHTML="5";}
+            if(level=="中等"){chooseLevel.innerHTML="8";}
+            if(level=="挑戰"){chooseLevel.innerHTML="10";}
+            if(level=="專精"){chooseLevel.innerHTML="15";}
+        }
+        function startGame(){
+            if(question)return;
+            if(interval)return;
+            music.play();
+            addQuestion();
+            question=setInterval(addQuestion,8500)
+            interval=setInterval(timeIncrease,1000);
+        }
+        function addQuestion(){
+            if(finishGameCheck==0){
+                let num=Math.floor(Math.random()*3);
+                if(num==0 && document.getElementById("img1").style.display=="none"){
+                    document.getElementById("img1").style.display="block";
+                }
+                else if(num==0 && document.getElementById("img1").style.display=="block"){
+                    num++;
+                    if(num==1 && document.getElementById("img2").style.display=="none"){
+                        document.getElementById("img2").style.display="block";
+                        return;
+                    }
+                    num++;
+                    if(num==2 && document.getElementById("img3").style.display=="none"){
+                        document.getElementById("img3").style.display="block";
+                        return;
+                    }
+                }
+                else if(num==1 && document.getElementById("img2").style.display=="none"){
+                    document.getElementById("img2").style.display="block";
+                }
+                else if(num==1 && document.getElementById("img2").style.display=="block"){
+                    num++;
+                    if(num==2 && document.getElementById("img3").style.display=="none"){
+                        document.getElementById("img3").style.display="block";
+                        return;
+                    }
+                    num=num-2;
+                    if(num==0 && document.getElementById("img1").style.display=="none"){
+                        document.getElementById("img1").style.display="block";
+                        return;
+                    }
+                }
+                else if(num==2 && document.getElementById("img3").style.display=="none"){
+                    document.getElementById("img3").style.display="block";
+                }
+                else if(num==2 && document.getElementById("img3").style.display=="block"){
+                    if(num==1 && document.getElementById("img2").style.display=="none"){
+                        document.getElementById("img2").style.display="block";
+                    }
+                    else if(num==0 && document.getElementById("img1").style.display=="none"){
+                        document.getElementById("img1").style.display="block";
+                    }
+                }
+            }
+        }
+        function timeIncrease(){
+            if(finishGameCheck==0)cnt++;
+            let min = cnt%60;
+            let hour = (cnt-min)/60;
+            let timeIncrease = document.getElementById("time");
+            if(hour>=10){timeIncrease.innerHTML=hour+":";}
+            else if(hour>0){timeIncrease.innerHTML="0"+hour+":";}
+            else{timeIncrease.innerHTML="00:";}
+            if(min>=10){timeIncrease.innerHTML+=min;}
+            else if(min>0){timeIncrease.innerHTML+="0"+min;}
+            else{timeIncrease.innerHTML+="00";}
+        }
+        function checkAnswerA(){
+            if(nowans=="A"){plusPoint();}
+            else{musicWA.play();}
+            document.getElementById("img"+tmp).style.display="none";
+            $(document).ready(function(){
+                $("#container").fadeOut(500);
+            });
+        }
+        function checkAnswerB(){
+            if(nowans=="B"){plusPoint();}
+            else{musicWA.play();}
+            document.getElementById("img"+tmp).style.display="none";
+            $(document).ready(function(){
+                $("#container").fadeOut(500);
+            });
+        }
+        function checkAnswerC(){
+            if(nowans=="C"){plusPoint();}
+            else{musicWA.play();}
+            document.getElementById("img"+tmp).style.display="none";
+            $(document).ready(function(){
+                $("#container").fadeOut(500);
+            });
+        }
+        function checkAnswerD(){
+            if(nowans=="D"){plusPoint();}
+            else{musicWA.play();}
+            document.getElementById("img"+tmp).style.display="none";
+            $(document).ready(function(){
+                $("#container").fadeOut(500);
+            });
+        }
+        function plusPoint(){
+            if(!musicAC.paused)return;
+            solveQuestionNumber++;
+            checkQuestion[numQuestion]=1;
+            musicAC.play();
+            document.getElementById("solveNumber").innerHTML=solveQuestionNumber;
+            if(solveQuestionNumber == document.getElementById("target").innerHTML){
+                setTimeout(finishGame,600);
+            }
+        }
+        window.addEventListener("load",start,false);
+        function finishGame(){
+            finishGameCheck=1;
+            document.getElementById("containerFinish").style.display="block";
+            localStorage.setItem("time",cnt);
+        }
+    </script>
+</head>
+<body>
+    <audio id="music" loop="true" preload="true" ><source src="voice/No Doubt - Yung Logos.mp3" type="audio/mp3"></audio>
+    <audio id="musicWA" preload="true" ><source src="voice/WA.mp3" type="audio/mp3"></audio>
+    <audio id="musicAC" preload="true" ><source src="voice/AC.mp3" type="audio/mp3"></audio>
+    <img src="img/demobackground.jpg" style="width: 95%;height: 80%;position:absolute;top:20px;left: 2.5%;z-index: 1;">
+    <img id="img1" src="img/question1.jpg" style="position:absolute;top:10%;left: 7%;z-index: 2;display: none;">
+    <img id="img2" src="img/question1.jpg" style="position:absolute;top:10%;left: 30%;z-index: 2;display: none;">
+    <img id="img3" src="img/question1.jpg" style="position:absolute;top:20%;left: 70%;z-index: 2;display: none;">
+    <div class="container" id="container" style="position:absolute;top:5%;left: 5%;z-index: 3;width: 90%;height: 90%; display: none;">
+        <div id="Question"></div>
+        <div id="select"></div>
+        <input type="button" value="A" name="answerA" id="answerA" style="border: #d8a8b1 3px solid;border-radius: 15px;background-color:#f5c3cc;;font-size:150%;width:46%;height:10%;position:absolute;top:75%;left: 3%;">
+        <input type="button" value="B" name="answerB" id="answerB" style="border: #d8a8b1 3px solid;border-radius: 15px;background-color:#f5c3cc;font-size:150%;width:46%;height:10%;position:absolute;top:75%;left: 52%;">
+        <input type="button" value="C" name="answerC" id="answerC" style="border: #d8a8b1 3px solid;border-radius: 15px;background-color:#f5c3cc;font-size:150%;width:46%;height:10%;position:absolute;top:87%;left: 3%;">
+        <input type="button" value="D" name="answerD" id="answerD" style="border: #d8a8b1 3px solid;border-radius: 15px;background-color:#f5c3cc;font-size:150%;width:46%;height:10%;position:absolute;top:87%;left: 52%;">
+    </div>
+    <div class="containerFinish" id="containerFinish" style="position:absolute;top:40%;left: 25%;z-index: 3;width: 50%;display: none;">
+        <div>
+            <br><br>恭喜完成 !! <br>點擊下方按鈕查案評分結果<br>
+            <input type="button" onclick="location.href='demoFinalScore.html'"value="查看評分結果" name="finish" id="finish" style="border: #f4b8c3 3px solid;border-radius: 15px;background-color:#f5c3cc;font-size:90%;width:46%;height:25%;">
+            <br><br><br></div>
+    </div>
+    <input type="button" value="Start Game" name="Start Game " id="startGame" style="font-size:150%;width:150px;height:50px;position:absolute;top:85%;left: 2.5%;">
+    <span style="font-size:180%;width:300px;height:50px;position:absolute;top:86.5%;left: 200px;">已解題數量：</span><span id="solveNumber" style="font-size:180%;width:150px;height:50px;position:absolute;top:86.5%;left: 360px;">0</span>
+    <span style="font-size:180%;width:300px;height:50px;position:absolute;top:86.5%;left: 400px;">目標解題數：</span><span id = "target" style="font-size:180%;width:150px;height:50px;position:absolute;top:86.5%;left: 560px;">0</span>
+    <span style="font-size:180%;width:300px;height:50px;position:absolute;top:86.5%;left: 600px;">主題：</span><span id = "Obj" style="font-size:180%; font-weight:bold;width:150px;height:50px;position:absolute;top:86.5%;left: 685px;">0</span>
+    <span style="font-size:180%;width:300px;height:50px;position:absolute;top:86.5%;left: 760px;">難度：</span><span id ="Level" style="font-size:180%;font-weight:bold;width:150px;height:50px;position:absolute;top:86.5%;left: 845px;">0</span>
+    <span id="time" style="font-size:250%;width:100px;height:50px;position:absolute;top:86%;left: 88%;">00:00</span>
+</body>
+</html>

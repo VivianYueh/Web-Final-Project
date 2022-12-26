@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>leaderBoard</title>
+        <link rel="stylesheet" type="text/css"  href="https://fonts.googleapis.com/css?family=Comfortaa">
+        <style type="text/css">
+            @import url(https://fonts.googleapis.com/earlyaccess/cwtexyen.css);
+            body {
+                background-color: rgb(251, 239, 241);
+                font-family: cwTexYen,'Comfortaa', sans-serif;
+                user-select: none;
+            }
+            #in {
+                width: 80%;
+                background: rgb(255, 249, 253);
+                box-shadow: 1px 1px 5px #3e3e3ec3;
+                margin: 0px auto 0px;
+                border-radius: 3px;
+                padding: 15px;
+                margin-top: 30px;
+                font-size: 200%;
+                text-align: center;
+                cursor: pointer;
+                font-weight: bold;
+                user-select: none;
+                color: rgb(183, 77, 77);
+            }
+            #chooseObject{
+                margin: 0px auto 0px;
+                text-align:center;
+            }
+            input[type=button]{
+                font-size: 1.2em;
+                width: 15vw;
+                color: white;
+                background-color: #f5c3cc;
+                cursor: pointer;
+                border: #f4b8c3 3px solid;border-radius: 15px;
+            }
+            table{
+                text-align: center;
+                width: 100%;
+            }
+            table,td{
+                border-collapse: collapse;
+            }
+            td{
+                height: 8vh;
+                width: 50%;
+            }
+            #title{
+                font-size: 300%;
+                font-weight: bold;
+                text-align: center;
+                color: rgb(183, 77, 77);
+            }
+            .return{
+                background: rgb(248, 231, 242);
+                min-width: 8%;
+                text-align: center;
+                width: fit-content;
+                font-size: 250%;
+                border:solid 3px rgb(242, 160, 213);
+                box-shadow: 5px 5px 5px #3e3e3ec3;
+                float: left;
+                padding:5px;
+                position: absolute;
+            }
+            .return:hover{
+                background-color: pink;
+                color: white;
+            }
+        </style>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+        <script>
+            let object1 = ["國文","數學","英文","綜合","作文"];
+            let object11 = ["chinese","math","english","all","composition"];
+            let object2 = ["輕鬆","中等","挑戰","專精"];
+            let object22 = ["easy","normal","hard","expert"];
+            let nowChooseLevel="";
+            let nowChooseObj="";
+            let tmp1=0,tmp2=0;
+            let tmp="";
+            let gameType=0;
+            function start(){
+                $(document).ready(function(){
+                    $("#composition").click(function(){checkGameType(0),chooseObject("作文"),tmp1=0,updataScoreBoard()});
+                    $("#demo").click(function(){checkGameType(1)});
+                    $("#chinese").click(function(){checkGameType(1),chooseObject("國文")});
+                    $("#math").click(function(){checkGameType(1),chooseObject("數學")});
+                    $("#english").click(function(){checkGameType(1),chooseObject("英文")});
+                    $("#all").click(function(){checkGameType(1),chooseObject("綜合")});
+                    $("#easy").click(function(){chooseLevel("輕鬆")});
+                    $("#normal").click(function(){chooseLevel("中等")});
+                    $("#hard").click(function(){chooseLevel("挑戰")});
+                    $("#expert").click(function(){chooseLevel("專精")});
+                });
+            }
+            function checkGameType(num){
+                if(num==1){
+                    gameType=1;
+                    document.getElementById("composition").style.backgroundColor="#f5c3cc";
+                    document.getElementById("demo").style.backgroundColor="#be959c";
+                }
+                else{
+                    gameType=0;
+                    document.getElementById("composition").style.backgroundColor="#be959c";
+                    document.getElementById("demo").style.backgroundColor="#f5c3cc";
+                }
+            }
+            function chooseObject(obj){
+                for(let i = 0 ; i < 5 ; i++){
+                    if(object1[i]==obj){
+                        nowChooseObj=obj;
+                        document.getElementById(object11[i]).style.backgroundColor="#be959c";
+                        tmp1=1;
+                        updataScoreBoard();
+                    }
+                    else{
+                        document.getElementById(object11[i]).style.backgroundColor="#f5c3cc";
+                    }
+                }
+            }
+            function chooseLevel(level){
+                for(let i = 0 ; i < 4 ; i++){
+                    if(object2[i]==level){
+                        nowChooseLevel=level;
+                        document.getElementById(object22[i]).style.backgroundColor="#be959c";
+                        tmp2=1;
+                        updataScoreBoard();
+                    }
+                    else{
+                        document.getElementById(object22[i]).style.backgroundColor="#f5c3cc";
+                    }
+                }
+            }
+            function updataScoreBoard(){
+                if((tmp1==1 && tmp2 ==1 && gameType ==1)||(tmp2==1 && gameType ==0) ){
+                    $(document).ready(function(){
+                        $.get("/scoreBoard",{},function(res){
+                            if(nowChooseObj=="作文"){
+                                res["data"].sort(function(a,b){
+                                    if(a.Score==b.Score)return a.name-b.name;
+                                    return b.Score-a.Score;
+                                });
+                            }
+                            else{
+                                res["data"].sort(function(a,b){
+                                    if(a.Score==b.Score)return a.name-b.name;
+                                    return a.Score-b.Score;
+                                });
+                            }
+                            console.log(res["data"].length);
+                            let tmptmp ="";
+                            tmptmp="<table>";
+                            for(let i = 0 ; i < res["data"].length ;i++){
+                                if(res["data"][i].Object==nowChooseObj && res["data"][i].Level==nowChooseLevel){
+                                    timeCount(res["data"][i].Score);
+                                    if(nowChooseObj=="作文")tmp = res["data"][i].Score;
+                                    tmptmp+="<tr><td>"+res["data"][i].name+"</td><td>"+tmp+"</td></tr>";
+                                }
+                            }
+                            tmptmp+="</table>";
+                            document.getElementById("in").innerHTML=tmptmp;
+                            console.log(res);
+                        });
+                    });
+                }
+            }   
+            function timeCount(Score){
+                tmp="";
+                let min = Score%60;
+                let hour = (Score-min)/60;
+                if(hour>=10){tmp+=hour+":";}
+                else if(hour>0){tmp+="0"+hour+":";}
+                else{tmp+="00:";}
+                if(min>=10){tmp+=min;}
+                else if(min>0){tmp+="0"+min;}
+                else{tmp+="00";}
+            }
+            window.addEventListener("load",start,false);
+        </script>
+    </head>
+
+    <body>
+        <div class="return" onclick="location.href='index.html'">回首頁</div>
+        <br>
+        <div id="title">排行榜</div>
+        <br>
+        <audio id="music" autoplay="true" loop="true" preload="true"><source src="voice/No Doubt - Yung Logos.mp3" type="audio/mp3"></audio>
+        <div id="chooseObject">
+            <input type="button" value="極限改作文" id="composition">
+            <input type="button" value="demo計時賽" id="demo">
+            <br><br>
+            <input type="button" value="國文" id="chinese">
+            <input type="button" value="數學" id="math">
+            <input type="button" value="英文" id="english">
+            <input type="button" value="綜合" id="all">
+            <br><br>
+            <input type="button" value="輕鬆" id="easy">
+            <input type="button" value="中等" id="normal">
+            <input type="button" value="挑戰" id="hard">
+            <input type="button" value="專精" id="expert">
+        </div>
+        <div id="in">
+            
+            
+        </div>
+    </body>
+</html>

@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>demoGameScore</title>
+        <link rel="stylesheet" type="text/css"  href="https://fonts.googleapis.com/css?family=Comfortaa">
+        <style type="text/css">
+            @import url(https://fonts.googleapis.com/earlyaccess/cwtexyen.css);
+            body {
+                background-color: rgb(251, 239, 241);
+                font-family: cwTexYen,'Comfortaa', sans-serif;
+                user-select: none;
+            }
+            #in {
+                width: 50%;
+                background: rgb(255, 249, 253);
+                box-shadow: 1px 1px 5px #3e3e3ec3;
+                margin: 0px auto 0px;
+                border-radius: 3px;
+                padding: 15px;
+                margin-top: 30px;
+                font-size: 200%;
+                text-align: center;
+                cursor: pointer;
+                font-weight: bold;
+                user-select: none;
+                color: rgb(183, 77, 77);
+            }
+            #upload{
+                text-align: center;
+                font-size: 150%;
+            }
+            input[type=button]{
+                background-color: #f5c3cc;
+                cursor: pointer;
+                border: #f4b8c3 3px solid;border-radius: 15px;
+            }
+        </style>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+        <script>
+            let arr=["chooseObject","chooseLevel","costTime","score","comment"];
+            let score=["","","",""];
+            let finalComment=["你已經是一位成熟的助教了，應該要學會自己回答問題了","幾乎抵達神乎其技的境界了","平平淡淡順利度過難關","再加把勁!!","複習後再重新挑戰吧!"]
+            let star=["★★★★★","★★★★☆","★★★☆☆","★★☆☆☆","★☆☆☆☆"];
+            let cnt=0;let tmp="";let cntTime;
+            function start(){
+                score[0]=localStorage.getItem("nowChooseObj");
+                score[1]=localStorage.getItem("nowChooseLevel");
+                timeCount();
+                scoreCount();
+                score[2]=tmp;
+                setInterval(addWord,800);
+                document.getElementById("uploadScore").addEventListener("click",uploadScore,false);
+            }
+            $(document).ready(function(){
+                $("#uploadScore").on("click",function(){
+                    //localhos:3000/upload
+                    alert("上傳成功!");
+                    let Name = document.getElementById("name").value;
+                    let Time = localStorage.getItem("time");
+                    let Obj = localStorage.getItem("nowChooseObj");
+                    let level = localStorage.getItem("nowChooseLevel");
+                    console.log(level);
+                    $.post("/upload",{name:Name,Score:Time,Object:Obj,Level:level},function(res){
+                    });
+                    document.getElementById("uploadScore").disabled=true;
+                });
+            });
+            function addWord(){
+                if(cnt==6)return;
+                if(cnt==5){
+                    document.getElementById("upload").style.display="block";
+                    return;
+                }
+                document.getElementById(arr[cnt]).innerHTML=score[cnt];
+                cnt++;
+            }
+            function timeCount(){
+                cntTime = localStorage.getItem("time");
+                let min = cntTime%60;
+                let hour = (cntTime-min)/60;
+                if(hour>=10){tmp+=hour+":";}
+                else if(hour>0){tmp+="0"+hour+":";}
+                else{tmp+="00:";}
+                if(min>=10){tmp+=min;}
+                else if(min>0){tmp+="0"+min;}
+                else{tmp+="00";}
+            }
+            function scoreCount(){
+                let Obj = localStorage.getItem("nowChooseObj");
+                let Level = localStorage.getItem("nowChooseLevel");
+                if(Obj=="英文"){
+                    if(Level=="輕鬆"){
+                        if(cntTime<=60)score[3]=star[0],score[4]=finalComment[0];
+                        else if(cntTime<=80)score[3]=star[1],score[4]=finalComment[1];
+                        else if(cntTime<=100)score[3]=star[2],score[4]=finalComment[2];
+                        else if(cntTime<=150)score[3]=star[3],score[4]=finalComment[3];
+                        else score[3]=star[4],score[4]=finalComment[4];
+                    }
+                    else if(Level=="中等"){
+                        if(cntTime<=100)score[3]=star[0],score[4]=finalComment[0];
+                        else if(cntTime<=130)score[3]=star[1],score[4]=finalComment[1];
+                        else if(cntTime<=160)score[3]=star[2],score[4]=finalComment[2];
+                        else if(cntTime<=190)score[3]=star[3],score[4]=finalComment[3];
+                        else score[3]=star[4],score[4]=finalComment[4];
+                    }
+                    else if(Level=="挑戰"){
+                        if(cntTime<=150)score[3]=star[0],score[4]=finalComment[0];
+                        else if(cntTime<=190)score[3]=star[1],score[4]=finalComment[1];
+                        else if(cntTime<=240)score[3]=star[2],score[4]=finalComment[2];
+                        else if(cntTime<=280)score[3]=star[3],score[4]=finalComment[3];
+                        else score[3]=star[4],score[4]=finalComment[4];
+                    }
+                    else if(Level=="專精"){
+                        if(cntTime<=170)score[3]=star[0],score[4]=finalComment[0];
+                        else if(cntTime<=210)score[3]=star[1],score[4]=finalComment[1];
+                        else if(cntTime<=260)score[3]=star[2],score[4]=finalComment[2];
+                        else if(cntTime<=320)score[3]=star[3],score[4]=finalComment[3];
+                        else score[3]=star[4],score[4]=finalComment[4];
+                    }
+                }
+                if(Obj=="國文"){
+                    if(Level=="輕鬆"){
+                        if(cntTime<=70)score[3]=star[0],score[4]=finalComment[0];
+                        else if(cntTime<=90)score[3]=star[1],score[4]=finalComment[1];
+                        else if(cntTime<=110)score[3]=star[2],score[4]=finalComment[2];
+                        else if(cntTime<=160)score[3]=star[3],score[4]=finalComment[3];
+                        else score[3]=star[4],score[4]=finalComment[4];
+                    }
+                    else if(Level=="中等"){
+                        if(cntTime<=120)score[3]=star[0],score[4]=finalComment[0];
+                        else if(cntTime<=150)score[3]=star[1],score[4]=finalComment[1];
+                        else if(cntTime<=170)score[3]=star[2],score[4]=finalComment[2];
+                        else if(cntTime<=210)score[3]=star[3],score[4]=finalComment[3];
+                        else score[3]=star[4],score[4]=finalComment[4];
+                    }
+                    else if(Level=="挑戰"){
+                        if(cntTime<=180)score[3]=star[0],score[4]=finalComment[0];
+                        else if(cntTime<=210)score[3]=star[1],score[4]=finalComment[1];
+                        else if(cntTime<=270)score[3]=star[2],score[4]=finalComment[2];
+                        else if(cntTime<=300)score[3]=star[3],score[4]=finalComment[3];
+                        else score[3]=star[4],score[4]=finalComment[4];
+                    }
+                    else if(Level=="專精"){
+                        if(cntTime<=200)score[3]=star[0],score[4]=finalComment[0];
+                        else if(cntTime<=240)score[3]=star[1],score[4]=finalComment[1];
+                        else if(cntTime<=290)score[3]=star[2],score[4]=finalComment[2];
+                        else if(cntTime<=340)score[3]=star[3],score[4]=finalComment[3];
+                        else score[3]=star[4],score[4]=finalComment[4];
+                    }
+                }
+                if(Obj=="數學"){
+                    if(Level=="輕鬆"){
+                        if(cntTime<=70)score[3]=star[0],score[4]=finalComment[0];
+                        else if(cntTime<=90)score[3]=star[1],score[4]=finalComment[1];
+                        else if(cntTime<=110)score[3]=star[2],score[4]=finalComment[2];
+                        else if(cntTime<=160)score[3]=star[3],score[4]=finalComment[3];
+                        else score[3]=star[4],score[4]=finalComment[4];
+                    }
+                    else if(Level=="中等"){
+                        if(cntTime<=120)score[3]=star[0],score[4]=finalComment[0];
+                        else if(cntTime<=150)score[3]=star[1],score[4]=finalComment[1];
+                        else if(cntTime<=170)score[3]=star[2],score[4]=finalComment[2];
+                        else if(cntTime<=210)score[3]=star[3],score[4]=finalComment[3];
+                        else score[3]=star[4],score[4]=finalComment[4];
+                    }
+                    else if(Level=="挑戰"){
+                        if(cntTime<=180)score[3]=star[0],score[4]=finalComment[0];
+                        else if(cntTime<=210)score[3]=star[1],score[4]=finalComment[1];
+                        else if(cntTime<=270)score[3]=star[2],score[4]=finalComment[2];
+                        else if(cntTime<=300)score[3]=star[3],score[4]=finalComment[3];
+                        else score[3]=star[4],score[4]=finalComment[4];
+                    }
+                    else if(Level=="專精"){
+                        if(cntTime<=240)score[3]=star[0],score[4]=finalComment[0];
+                        else if(cntTime<=290)score[3]=star[1],score[4]=finalComment[1];
+                        else if(cntTime<=340)score[3]=star[2],score[4]=finalComment[2];
+                        else if(cntTime<=370)score[3]=star[3],score[4]=finalComment[3];
+                        else score[3]=star[4],score[4]=finalComment[4];
+                    }
+                }
+                if(Obj=="綜合"){
+                    if(Level=="輕鬆"){
+                        if(cntTime<=70)score[3]=star[0],score[4]=finalComment[0];
+                        else if(cntTime<=90)score[3]=star[1],score[4]=finalComment[1];
+                        else if(cntTime<=110)score[3]=star[2],score[4]=finalComment[2];
+                        else if(cntTime<=160)score[3]=star[3],score[4]=finalComment[3];
+                        else score[3]=star[4],score[4]=finalComment[4];
+                    }
+                    else if(Level=="中等"){
+                        if(cntTime<=120)score[3]=star[0],score[4]=finalComment[0];
+                        else if(cntTime<=150)score[3]=star[1],score[4]=finalComment[1];
+                        else if(cntTime<=170)score[3]=star[2],score[4]=finalComment[2];
+                        else if(cntTime<=210)score[3]=star[3],score[4]=finalComment[3];
+                        else score[3]=star[4],score[4]=finalComment[4];
+                    }
+                    else if(Level=="挑戰"){
+                        if(cntTime<=180)score[3]=star[0],score[4]=finalComment[0];
+                        else if(cntTime<=210)score[3]=star[1],score[4]=finalComment[1];
+                        else if(cntTime<=270)score[3]=star[2],score[4]=finalComment[2];
+                        else if(cntTime<=300)score[3]=star[3],score[4]=finalComment[3];
+                        else score[3]=star[4],score[4]=finalComment[4];
+                    }
+                    else if(Level=="專精"){
+                        if(cntTime<=200)score[3]=star[0],score[4]=finalComment[0];
+                        else if(cntTime<=240)score[3]=star[1],score[4]=finalComment[1];
+                        else if(cntTime<=290)score[3]=star[2],score[4]=finalComment[2];
+                        else if(cntTime<=340)score[3]=star[3],score[4]=finalComment[3];
+                        else score[3]=star[4],score[4]=finalComment[4];
+                    }
+                }
+            }
+            window.addEventListener("load",start,false);
+        </script>
+    </head>
+
+    <body>
+        <audio id="music" autoplay="ture" loop="ture" preload="true"><source src="voice/No Doubt - Yung Logos.mp3" type="audio/mp3"></audio>
+        <div id="in">
+            <br>
+            <div id="title">你的成績</div><br>
+            <div>所選主題：<span id="chooseObject"></span ></div><br>
+            <div>所選難度：<span id="chooseLevel" ></span></div><br>
+            <div>花費時間：<span id="costTime"></span></div><br>
+            <div>最終評分：<span id="score"></span></div><br>
+            <div>評語：<span id="comment"></span></div><br>
+            
+        </div>
+        <br>
+        <div id="upload" style="display: none;user-select: none;">
+            你的姓名: <input type="text" placeholder="star" id="name">
+            <input type="button" value="上傳分數至排行榜" id="uploadScore">
+            <span>  </span>
+            <input type="button" value="查看排行榜" onclick="location.href='leaderboard.html'" id="getScoreBoard">
+            
+            
+        </div>
+    </body>
+</html>

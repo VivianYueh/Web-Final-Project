@@ -1,0 +1,33 @@
+body{
+    background-image: url(img/封面圖.png);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    font-family: Noto Sans TC, Nerko One, sans-serif;
+}
+div{
+    left:35%;
+    min-width: 30%;
+    width: fit-content;
+    height:fit-content;
+    text-align: center;
+    vertical-align:middle;
+    padding:5px;
+    color:black;
+    font-size: 250%;
+    margin: auto;
+}
+.div1{
+    top:65%;
+    position: absolute;
+    cursor: pointer;
+}
+.div3{
+    top:80%;
+    position: absolute;
+    cursor: pointer;
+}
+.div1:hover,.div2:hover,.div3:hover{
+    background-color: #F8DAE0;
+    border: 5px rgba(150, 151, 137, 0.82) solid;
+    box-sizing: border-box;
+}

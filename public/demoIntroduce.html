@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>demoIntroduce</title>
+    <style>
+        body {
+            min-height: 100%;
+            background: rgba(255, 226, 246, 0.614);
+            font-family: cwTeXFangSong,'Comfortaa', sans-serif;
+            padding-bottom: 40px;
+            user-select: none;
+        }
+        .container {
+            width: 80%;
+            background: rgb(255, 249, 253);
+            box-shadow: 1px 1px 5px #3e3e3ec3;
+            margin: 0px auto;
+            border-radius: 3px;
+            padding: 40px;
+            margin-top: 25%;
+            transform: translateY(-50%);
+            font-size: 150%;
+        }
+        #Continue{
+            cursor: pointer;
+        }
+        #Continue:hover{
+            background-color: pink;
+        }
+    </style>
+    <script>
+        let introduceString = "    demo助教要在整間教室快速移動，也要觀察不同同學問問題的先後順序，並且會有各式各樣的問題，你的朋友小星為一位demo助教，每周都要訓練自己的觀察能力以及回答問題的各種方法，他發現在demo的過程中除了可以教導大家，也可以強化自身的能力。但是小星突然生病必須請假，你決定要幫助小星代班。為了代班，你想要先準備各種知識，以防回答不出同學的問題，小星為了你準備了幾個題庫，從中學習並完成代班的任務吧!!";
+        let cnt=0;
+        let interval
+        function change(){
+            if(cnt===203){
+                console.log("ovo");
+                clearInterval(interval);
+                let tmp = document.getElementById("Continue").innerHTML="Click To Continue...";
+                return;
+            }
+            let addWord = document.getElementById("Word").innerHTML+=introduceString[cnt++];
+        }
+        function start(){
+            interval = window.setInterval(change,100);
+        }
+        function gotoGame(){
+            console.log("ouo");
+            window.location.assign("compositionGame.html");
+        }
+        window.addEventListener("load",start,false);
+    </script>
+</head>
+<body>
+    <div class="container" id="container">
+        <div id="Word">　　</div>
+        <div id="Continue" style="float:right" onclick="location.href='selectGameObj2.html'"></div>
+    </div>
+</body>
+</html>

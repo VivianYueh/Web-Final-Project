@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>compositionIntroduce</title>
+    <style>
+        body {
+            min-height: 100%;
+            background: rgba(255, 226, 246, 0.614);
+            font-family: cwTeXFangSong,'Comfortaa', sans-serif;
+            padding-bottom: 40px;
+        }
+        .container {
+            width: 80%;
+            background: rgb(255, 249, 253);
+            box-shadow: 1px 1px 5px #3e3e3ec3;
+            margin: 0px auto;
+            border-radius: 3px;
+            padding: 40px;
+            margin-top: 25%;
+            transform: translateY(-50%);
+            font-size: 150%;
+        }
+        #Continue{
+            cursor: pointer;
+        }
+        #Continue:hover{
+            background-color: pink;
+        }
+    </style>
+    <script>
+        let introduceString = "    國文作文每篇都需要仔細、再三地看，才能找出同學們在文章中的錯誤及優點，然而隨著期末的到來，事情越來越多，時間越來越少，雪上加霜的是糊塗的老師竟然忘記作文批改期限，你的朋友小伶直到期限的前一周才拿到作文，眼看截止期限慢慢逼近，小伶的手邊還有70篇作文，善良的你決定助她一臂之力，幫忙批改一部份作文。請幫助小伶，在時限內找出同學所犯的錯誤並成功批改作文順利度過期末吧QQ";
+        let cnt=0;
+        let interval
+        function change(){
+            if(cnt===187){
+                console.log("ovo");
+                clearInterval(interval);
+                let tmp = document.getElementById("Continue").innerHTML="Click To Continue...";
+                return;
+            }
+            let addWord = document.getElementById("Word").innerHTML+=introduceString[cnt++];
+        }
+        function start(){
+            interval = window.setInterval(change,100);
+        }
+        function gotoGame(){
+            console.log("ouo");
+            window.location.assign("compositionGame.html");
+        }
+        window.addEventListener("load",start,false);
+    </script>
+</head>
+<body>
+    <div class="container" id="container">
+        <div id="Word">　　</div>
+        <div id="Continue" style="float:right" onclick="location.href='selectGameMode.html'"></div>
+    </div>
+</body>
+</html>

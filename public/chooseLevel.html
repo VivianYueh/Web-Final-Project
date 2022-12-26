@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>選擇遊戲</title>
+    <link rel="stylesheet" type="text/css"  href="https://fonts.googleapis.com/css?family=Comfortaa">
+        <style type="text/css">
+            @import url(https://fonts.googleapis.com/earlyaccess/cwtexyen.css);
+            body {
+                background-color: rgb(251, 239, 241);
+                font-family: cwTexYen,'Comfortaa', sans-serif;
+            }
+            #title{
+                font-size: 300%;
+                font-weight: bold;
+                text-align: center;
+                color: rgb(183, 77, 77);
+            }
+            .image{
+                display: flex;
+                height: 100px;
+            }
+            div .pict{
+                width: 35%;
+                text-align: center;
+                font-size: 350%;
+                cursor: pointer;
+                user-select: none;
+            }
+            div .ouo{
+                width: 10%;
+            }
+        </style>
+        <script>
+            function start(){
+                let sound1 = document.getElementById("pict1").addEventListener("mouseover",playMusic,false);
+                let sound2 = document.getElementById("pict2").addEventListener("mouseover",playMusic,false);
+            }
+            function playMusic(){
+                music.play();
+            }
+            window.addEventListener("load",start,false);
+        </script>
+</head>
+<body>
+    <audio id="music" preload="true"><source src="voice/click.mp3" type="audio/mp3"></audio>
+    <br><br>
+    <div id="title">選擇遊戲模式</div>
+    <br><br><br><br><br><br><br><br>
+    <div class="image">
+        <div class="ouo"></div>
+        <div id = "pict1" class="pict" onclick="location.href='compositionIntroduce.html'">
+            <div class="owo">　　　</div>
+            極限<br>改作文
+            <div class="owo">　　　</div>
+        </div>
+        <div class="ouo"></div>
+        <div id = "pict2" class="pict" onclick="location.href='demoIntroduce.html'">
+            <div class="owo">　　　</div>
+            demo<br>計時賽
+            <div class="owo">　　　</div>
+        </div>
+        <div class="ouo"></div>
+    </div>
+
+</body>
+</html>

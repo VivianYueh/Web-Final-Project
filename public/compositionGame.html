@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>改作文</title>
+        <link rel="stylesheet" type="text/css"
+        href="https://fonts.googleapis.com/css?family=Nerko+One">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+        <style>
+            body{
+                text-align: center;
+                background: rgba(255, 226, 246, 0.614);
+                font-family: Noto Sans TC, Nerko One, sans-serif;
+            }
+            div{
+                position: absolute;
+                font-family: Noto Sans TC, Nerko One, sans-serif;
+            }
+            img{
+                position: relative;
+                text-align: center;
+                width: 113%;
+                height: 113%;
+            }
+            .btn{
+                position: absolute;
+                border: none;
+                background-color: transparent;
+                font-family: Noto Sans TC, Nerko One, sans-serif;
+                font-size: 35px;
+                z-index: 2;
+            }
+            .containerFinish{
+                width: 50%;
+                margin-top: 25%;
+                transform: translateY(-50%);
+                background: #F8DAE0;
+                box-shadow: 1px 1px 5px #3e3e3ec3;
+                margin: 0px auto 0px;
+                border-radius: 3px;
+                font-size: 200%;
+                text-align: center;
+            }
+            .btn1{
+                border: none;
+                background-color: transparent;
+                font-family: Noto Sans TC, Nerko One, sans-serif;
+                font-size: 30px;
+                z-index: 2;
+                text-align: justify;
+            }
+            #start{
+                position: absolute;
+                left: 1330px;
+                top: 60%;
+            }
+            #end{
+                position: absolute;
+                left: 1330px;
+                top: 70%;
+            }
+            #finish{
+                position: absolute;
+                left: 1330px;
+                top: 60%;
+            }
+            .btn1:hover{
+                background-color: rgb(250, 220, 225);
+                border: 5px rgba(150, 151, 137, 0.82) solid;
+            }
+            #score{
+                position: absolute;
+                left: 1330px;
+                
+                top:10%
+            }
+            .progessbar {
+            position: relative;
+            text-align: center;
+            border: 1px dashed rgba(150, 151, 137, 0.82);
+            height: 16px;
+            width: 128%;
+            }
+
+            .progessbar .text {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            line-height: 16px;
+            z-index: 10;
+            }
+
+            .progessbar .bar {
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 16px;
+            background-color: rgb(251, 36, 72);
+            }
+            
+        </style>
+    </head>
+    <body>
+        <audio id="music" loop="true" preload="true" ><source src="voice/MulhollandKingCanyon.mp3" type="audio/mp3"></audio>
+        <audio id="musicWA" preload="true" ><source src="voice/WA.mp3" type="audio/mp3"></audio>
+        <audio id="musicAC" preload="true" ><source src="voice/AC.mp3" type="audio/mp3"></audio>
+        <div class="containerFinish" id="containerFinish" style="position:absolute;top:40%;left: 25%;z-index: 3;width: 50%;height: 30%;display: none;">
+            <br>恭喜完成 !! <br>點擊下方按鈕查案評分結果<br>
+            <input type="button" onclick="location.href='compositionFinalScore.html'"value="查看評分結果" name="finish" id="done" style="border: #f4b8c3 3px solid;border-radius: 15px;background-color:#f5c3cc;font-size:90%;width:46%;height:25%;">
+        </div>
+        <div id="contain">
+            <div class="progessbar" style="display: none;">
+                <div class="text"></div>
+                <div class="bar"></div>
+            </div>
+              <br>
+            <span>
+                <img src="img/稿紙.jpg" id="pic">
+                <input type="button" id="w0" value=""class="btn"></input><input type="button" id="w1" value="" class="btn"></input><input type="button" id="w2" value=""class="btn"></input><input type="button" id="w3" value=""class="btn"></input><input type="button" id="w4" value=""class="btn"></input><input type="button" id="w5" value=""class="btn"></input><input type="button" id="w6" value=""class="btn"></input><input type="button" id="w7" value=""class="btn"></input><input type="button" id="w8" value=""class="btn"></input><input type="button" id="w9" value=""class="btn">
+                <input type="button" id="w10" value=""class="btn"></input><input type="button" id="w11" value=""class="btn"></input><input type="button" id="w12" value=""class="btn"></input><input type="button" id="w13" value=""class="btn"></input><input type="button" id="w14" value=""class="btn"></input><input type="button" id="w15" value=""class="btn"></input><input type="button" id="w16" value=""class="btn"></input><input type="button" id="w17" value=""class="btn"></input><input type="button" id="w18" value=""class="btn"></input><input type="button" id="w19" value=""class="btn">
+                <input type="button" id="w20" value=""class="btn"></input><input type="button" id="w21" value="" class="btn"></input><input type="button" id="w22" value=""class="btn"></input><input type="button" id="w23" value=""class="btn"></input><input type="button" id="w24" value=""class="btn"></input><input type="button" id="w25" value=""class="btn"></input><input type="button" id="w26" value=""class="btn"></input><input type="button" id="w27" value=""class="btn"></input><input type="button" id="w28" value=""class="btn"></input><input type="button" id="w29" value=""class="btn">
+                <input type="button" id="w30" value=""class="btn"></input><input type="button" id="w31" value=""class="btn"></input><input type="button" id="w32" value=""class="btn"></input><input type="button" id="w33" value=""class="btn"></input><input type="button" id="w34" value=""class="btn"></input><input type="button" id="w35" value=""class="btn"></input><input type="button" id="w36" value=""class="btn"></input><input type="button" id="w37" value=""class="btn"></input><input type="button" id="w38" value=""class="btn"></input><input type="button" id="w39" value=""class="btn">
+                <input type="button" id="w40" value=""class="btn"></input><input type="button" id="w41" value="" class="btn"></input><input type="button" id="w42" value=""class="btn"></input><input type="button" id="w43" value=""class="btn"></input><input type="button" id="w44" value=""class="btn"></input><input type="button" id="w45" value=""class="btn"></input><input type="button" id="w46" value=""class="btn"></input><input type="button" id="w47" value=""class="btn"></input><input type="button" id="w48" value=""class="btn"></input><input type="button" id="w49" value=""class="btn">
+                <input type="button" id="w50" value=""class="btn"></input><input type="button" id="w51" value=""class="btn"></input><input type="button" id="w52" value=""class="btn"></input><input type="button" id="w53" value=""class="btn"></input><input type="button" id="w54" value=""class="btn"></input><input type="button" id="w55" value=""class="btn"></input><input type="button" id="w56" value=""class="btn"></input><input type="button" id="w57" value=""class="btn"></input><input type="button" id="w58" value=""class="btn"></input><input type="button" id="w59" value=""class="btn">
+                <input type="button" id="w60" value=""class="btn"></input><input type="button" id="w61" value="" class="btn"></input><input type="button" id="w62" value=""class="btn"></input><input type="button" id="w63" value=""class="btn"></input><input type="button" id="w64" value=""class="btn"></input><input type="button" id="w65" value=""class="btn"></input><input type="button" id="w66" value=""class="btn"></input><input type="button" id="w67" value=""class="btn"></input><input type="button" id="w68" value=""class="btn"></input><input type="button" id="w69" value=""class="btn">
+                <input type="button" id="w70" value=""class="btn"></input><input type="button" id="w71" value=""class="btn"></input><input type="button" id="w72" value=""class="btn"></input><input type="button" id="w73" value=""class="btn"></input><input type="button" id="w74" value=""class="btn"></input><input type="button" id="w75" value=""class="btn"></input><input type="button" id="w76" value=""class="btn"></input><input type="button" id="w77" value=""class="btn"></input><input type="button" id="w78" value=""class="btn"></input><input type="button" id="w79" value=""class="btn">
+            </span>
+            <input type="button" value="開始" id="start" class="btn1"></input>
+            <input type="button" value="離開" id="end"class="btn1"></input>
+            <input type="button" value="完成" id="finish"class="btn1"></input>
+           
+            <div id="score">
+                <h1>score</h1>
+                <h1 id="s">0</h1>
+            </div>
+            
+        </div>
+        
+        <script type="text/javascript">
+            var sc;
+            var startTime = new Date().getTime();
+            var targetSeconds;
+            var currentTime;
+            var timerId=null;
+            var num=0;
+            var ans=new Set();
+            var ans0=["w12","w45","w49"];
+            var ans1=["w46"];
+            var ans2=['w54', 'w55', 'w56', 'w57', 'w58'];
+            var ans3=['w5','w8' ,'w10'];
+            var ans4=["w46"];
+            var ans5=['w48', 'w60', 'w61', 'w64'];
+            var ans6=['w9', 'w42', 'w49', 'w58', 'w61'];
+            var ans7=['w8', 'w49'];
+            var ans8=[];
+            var ans9=['w21', 'w64'];
+            var ans10=['w56'];
+            var ans11=['w32'];
+            var ans12=['w7', 'w17', 'w66'];
+            var ans13=['w0', 'w22', 'w46', 'w62'];
+            var ans14=['w2', 'w48'];
+            var word=["剛進入大學時，只認識我的是友，使我擔心遇到困難時求助無門。不過因為有分組活動，我就主動尋找火伴，也音此我漸漸認識同學，開拓自己的朋友圈。","從家裡到海大，必須搭火車再轉坐公車，基隆的依山傍海驚豔了我，到了學校，我發現這裡十分偏僻，不國一進到海大宿舍，斑駁的牆面與霉味，使我對於大學生活有了真實感。","在海大每天出門不管晴雨我都帶著雨傘，在這裡陰天出現的次數遠大於出太陽的次數，也因為經常下雨而使得環境很潮濕，野史貝克夜折磨的心情更加沉重。","海大的天氣與多於情，始得大家都格外珍惜出太陽的時光，甚至有些老師還會在晴天提早下課，讓學生出去曬曬太陽。","上了大學後，原以為會比高中自由，有更多時間做自己的事，卻發現沒人幫忙規劃的生活反而更為忙碌，凡重的課業讓我不能到處玩樂。然而適度的妥協，使我也有不錯的社團生活。","海大總是颳風下雨，若問有甚麼是上大學後最重要的東西，絕對非雨傘莫屬，畢竟短短幾個月我就已經有好幾隻開花的雨傘，都可以去開與三回收電了。","大學生活多采多姿，由其宿舍生活，遇到的室友無奇不有，例如我的室友就經常在宿舍做奇怪的是，讓人既費解有害怕。另外社團的頁衝、消夜我都參加過，十分好玩。","我的大學生活簡直藝團亂，晚上室友不睡覺一直打遊戲，使我也想加入，導致隔天起不來，原本還會掙扎去教室稅，後來天氣冷了乾脆直接翹課在宿舍裡享受生活。","分配宿舍像賭博，永遠不知道你的室友是什麼樣，我的室友中一個晚上不睡覺通宵打遊戲，一個會說夢話，每每被說夢話的人喊到名字就會出事，使我很怕聽到他叫我。","海大的校園極大，且不能騎腳踏車，使我對於想相中的大學生活略感失望，同時，也使我必須提早許多起床，才能在上課前到達教室，這對於我這格起床困難戶太不友好了。","海大雖然濕氣超重，且位置偏僻，但卻有很好的生態環境，由於依山傍海，聽說夏天可以看螢火蟲，路上時常有螃蟹出沒，且由揄靠海，我可以時常去海邊走走轉換心情。","身在海島國家，海洋與我們密不可分，它孕育萬物，海風拂過每個在岸邊跳望的我，此時此刻的它與我，似乎如無話不談的好友般親近。","台灣四面環海，由豐富的海洋資源，使胎灣有許多的海洋文化與海上活動，每到夏天，划獨木舟是我家中的必備活動，在與海的接觸中，我發現海的神蜜、多變，也感受到它的美麗。","胎灣有豐富的海洋資源，黑鮪魚季、飛魚季等，人竟皆知，大家也十分熱愛，然而隨著漁業進步，過度補牢成為一大問題，若不停止，將來有意天我們將不再有這些活動。","我總西歡去海邊走走，不只因為他的多變、美麗，更因為他總是在那，默默地守護這片土地，每次到海邊，吹折海風，看著浪花，我的心情就能隨著拍岸聲找回節奏，回歸冷靜。"]
+            var bu=new Array();
+            function start(){
+                sc=0;
+                chooseLevel();
+                $("#finish").hide();
+                var a=0;
+                for(var j=0;j<80;j++){
+                    document.getElementById("w"+j).style.display="none";
+                        
+                }
+                for(var i=0;i<80;i++){
+                    bu[i]=0;
+                    console.log(bu[i]);    
+                }
+
+            } window.addEventListener("load",start,false);
+            function chooseLevel(){
+                let tmp = localStorage.getItem("nowChooseLevel");
+                let chooseLevel = document.getElementById("target");
+                console.log(tmp);
+                if(tmp=="輕鬆"){
+                    targetSeconds=300;
+                }
+                if(tmp=="中等"){
+                    targetSeconds=240;
+                }
+                if(tmp=="挑戰"){
+                    targetSeconds=180;
+                }
+                if(tmp=="專精"){
+                    targetSeconds=120;
+                }
+            }
+
+            $("#start").click(function(){
+                music.play();
+                $(".progessbar").show();
+                $("#finish").show();
+                $("#start").hide();
+                if(timerId==null) {
+                    timerId=setInterval( function () { timer(); }, 1000);
+                }
+                for(var j=0;j<80;j++){
+                    document.getElementById("w"+j).style.display="inline";
+                        
+                }
+                document.getElementById("pic").setAttribute("src","img/稿紙0.jpg");
+                W();
+            })
+            $("#end").click(function(){
+                var b=confirm("確定要離開?")
+                if(b){
+                    window.location = 'index.html';
+                }
+            })
+            $("#finish").click(function(){
+                for(var j=0;j<word[num].length;j++){
+                        document.getElementById("w"+j).value="";
+                        document.getElementById("w"+j).style.border="none";
+                }
+                var cnt;
+                if(num==0){
+                    cnt=0;
+                    ans.forEach(function(value){
+                            console.log(value)
+                            console.log(ans0.includes(value));
+                            if(ans0.includes(value)){
+                                cnt++;
+                                sc+=2.5;
+                                document.getElementById("s").innerHTML=sc;
+                            }
+                            else{
+                                sc-=2.5;
+                                if(sc<0) sc=0;
+                                document.getElementById("s").innerHTML=sc;
+                            }
+                        });
+                        console.log(cnt)
+                        if(cnt!=ans0.length){
+                            musicWA.play();
+                            alert("答案:\n是->室\n火->夥\n應->因");
+                            
+                        }
+                        else{
+                            musicAC.play();
+                        }
+                }
+                else if(num==1){
+                    cnt=0;
+                    ans.forEach(function(value){
+                            console.log(value)
+                            console.log(ans1.includes(value));
+                            if(ans1.includes(value)){
+                                cnt++;
+                                sc+=2.5;
+                                document.getElementById("s").innerHTML=sc;
+                            }
+                            else{
+                                sc-=2.5;
+                                if(sc<0) sc=0;
+                                document.getElementById("s").innerHTML=sc;
+                            }
+                        });
+                        console.log(cnt)
+                        if(cnt!=ans1.length){
+                            musicWA.play();
+                            alert("答案:\n國->過");
+                        }
+                        else{
+                            musicAC.play();
+                        }
+                }
+                else if(num==2){
+                    cnt=0;
+                    ans.forEach(function(value){
+                            console.log(value)
+                            console.log(ans2.includes(value));
+                            if(ans2.includes(value)){
+                                cnt++;
+                                sc+=2.5;
+                                document.getElementById("s").innerHTML=sc;
+                            }
+                            else{
+                                sc-=2.5;
+                                if(sc<0) sc=0;
+                                document.getElementById("s").innerHTML=sc;
+                            }
+                        });
+                        console.log(cnt)
+                        if(cnt!=ans2.length){
+                            musicWA.play();
+                            alert("答案:\n野->也\n史->使\n貝->被\n克->課\n夜->業");
+                        }
+                        else{
+                            musicAC.play();
+                        }
+                }
+                else if(num==3){
+                    cnt=0;
+                    ans.forEach(function(value){
+                            console.log(value)
+                            console.log(ans3.includes(value));
+                            if(ans3.includes(value)){
+                                cnt++;
+                                sc+=2.5;
+                                document.getElementById("s").innerHTML=sc;
+                            }
+                            else{
+                                sc-=2.5;
+                                if(sc<0) sc=0;
+                                document.getElementById("s").innerHTML=sc;
+                            }
+                        });
+                        console.log(cnt)
+                        if(cnt!=ans3.length){
+                            musicWA.play();
+                            alert("答案:\n與->雨\n情->晴\n始->使");
+                        }
+                        else{
+                            musicAC.play();
+                        }
+                }
+                else if(num==4){
+                    cnt=0;
+                    ans.forEach(function(value){
+                            console.log(value)
+                            console.log(ans4.includes(value));
+                            if(ans4.includes(value)){
+                                cnt++;
+                                sc+=2.5;
+                                document.getElementById("s").innerHTML=sc;
+                            }
+                            else{
+                                sc-=2.5;
+                                if(sc<0) sc=0;
+                                document.getElementById("s").innerHTML=sc;
+                            }
+                        });
+                        console.log(cnt)
+                        if(cnt!=ans4.length){
+                            musicWA.play();
+                            alert("答案:\n凡->繁");
+                        }
+                        else{
+                            musicAC.play();
+                        }
+                }
+                else if(num==5){
+                    cnt=0;
+                    ans.forEach(function(value){
+                            console.log(value)
+                            console.log(ans4.includes(value));
+                            if(ans5.includes(value)){
+                                cnt++;
+                                sc+=2.5;
+                                document.getElementById("s").innerHTML=sc;
+                            }
+                            else{
+                                sc-=2.5;
+                                if(sc<0) sc=0;
+                                document.getElementById("s").innerHTML=sc;
+                            }
+                        });
+                        console.log(cnt)
+                        if(cnt!=ans5.length){
+                            musicWA.play();
+                            alert("答案:\n隻->支\n與->雨\n三->傘\n電->店");
+                        }
+                        else{
+                            musicAC.play();
+                        }
+                }
+                else if(num==6){
+                    cnt=0;
+                    ans.forEach(function(value){
+                            console.log(value)
+                            console.log(ans4.includes(value));
+                            if(ans6.includes(value)){
+                                cnt++;
+                                sc+=2.5;
+                                document.getElementById("s").innerHTML=sc;
+                            }
+                            else{
+                                sc-=2.5;
+                                if(sc<0) sc=0;
+                                document.getElementById("s").innerHTML=sc;
+                            }
+                        });
+                        console.log(cnt)
+                        if(cnt!=ans6.length){
+                            musicWA.play();
+                            alert("答案:\n由->尤\n是->事\n有->又\n頁->夜\n消->宵");
+                        }
+                        else{
+                            musicAC.play();
+                        }
+                }
+                else if(num==7){
+                    cnt=0;
+                    ans.forEach(function(value){
+                            console.log(value)
+                            console.log(ans4.includes(value));
+                            if(ans7.includes(value)){
+                                cnt++;
+                                sc+=2.5;
+                                document.getElementById("s").innerHTML=sc;
+                            }
+                            else{
+                                sc-=2.5;
+                                if(sc<0) sc=0;
+                                document.getElementById("s").innerHTML=sc;
+                            }
+                        });
+                        console.log(cnt)
+                        if(cnt!=ans7.length){
+                            musicWA.play();
+                            alert("答案:\n藝->一\n稅->睡");
+                        }
+                        else{
+                            musicAC.play();
+                        }
+                    
+                }
+                else if(num==8){
+                    cnt=0;
+                    ans.forEach(function(value){
+                            console.log(value)
+                            console.log(ans4.includes(value));
+                            if(ans8.includes(value)){
+                                cnt++;
+                                sc+=2.5;
+                                document.getElementById("s").innerHTML=sc;
+                            }
+                            else{
+                                sc-=2.5;
+                                if(sc<0) sc=0;
+                                document.getElementById("s").innerHTML=sc;
+                            }
+                        });
+                        console.log(cnt)
+                        if(cnt!=ans8.length){
+                            musicWA.play();
+                            alert("答案:\n此題無錯字");
+                        }
+                        else{
+                            musicAC.play();
+                        }
+                }
+                else if(num==9){
+                    cnt=0;
+                    ans.forEach(function(value){
+                            console.log(value)
+                            console.log(ans4.includes(value));
+                            if(ans9.includes(value)){
+                                cnt++;
+                                sc+=2.5;
+                                document.getElementById("s").innerHTML=sc;
+                            }
+                            else{
+                                sc-=2.5;
+                                if(sc<0) sc=0;
+                                document.getElementById("s").innerHTML=sc;
+                            }
+                        });
+                        console.log(cnt)
+                        if(cnt!=ans9.length){
+                            musicWA.play();
+                            alert("答案:\n相->像");
+                        }
+                        else{
+                            musicAC.play();
+                        }
+                }
+                else if(num==10){
+                    cnt=0;
+                    ans.forEach(function(value){
+                            console.log(value)
+                            console.log(ans4.includes(value));
+                            if(ans10.includes(value)){
+                                cnt++;
+                                sc+=2.5;
+                                document.getElementById("s").innerHTML=sc;
+                            }
+                            else{
+                                sc-=2.5;
+                                if(sc<0) sc=0;
+                                document.getElementById("s").innerHTML=sc;
+                            }
+                        });
+                        console.log(cnt)
+                        if(cnt!=ans10.length){
+                            musicWA.play();
+                            alert("答案:\n揄->於");
+                        }
+                        else{
+                            musicAC.play();
+                        }
+                }
+                else if(num==11){
+                    cnt=0;
+                    ans.forEach(function(value){
+                            console.log(value)
+                            console.log(ans4.includes(value));
+                            if(ans11.includes(value)){
+                                cnt++;
+                                sc+=2.5;
+                                document.getElementById("s").innerHTML=sc;
+                            }
+                            else{
+                                sc-=2.5;
+                                if(sc<0) sc=0;
+                                document.getElementById("s").innerHTML=sc;
+                            }
+                        });
+                        console.log(cnt)
+                        if(cnt!=ans11.length){
+                            musicWA.play();
+                            alert("答案:\n跳->眺");
+                        }
+                        else{
+                            musicAC.play();
+                        }
+                
+                }
+                else if(num==12){
+                    cnt=0;
+                    ans.forEach(function(value){
+                            console.log(value)
+                            console.log(ans4.includes(value));
+                            if(ans12.includes(value)){
+                                cnt++;
+                                sc+=2.5;
+                                document.getElementById("s").innerHTML=sc;
+                            }
+                            else{
+                                sc-=2.5;
+                                if(sc<0) sc=0;
+                                document.getElementById("s").innerHTML=sc;
+                            }
+                        });
+                        console.log(cnt)
+                        if(cnt!=ans12.length){
+                            musicWA.play();
+                            alert("答案:\n由->有\n胎->臺\n蜜->祕");
+                        }
+                        else{
+                            musicAC.play();
+                        }
+                
+                }
+                else if(num==13){
+                    cnt=0;
+                    ans.forEach(function(value){
+                            console.log(value)
+                            console.log(ans4.includes(value));
+                            if(ans13.includes(value)){
+                                cnt++;
+                                sc+=2.5;
+                                document.getElementById("s").innerHTML=sc;
+                            }
+                            else{
+                                sc-=2.5;
+                                if(sc<0) sc=0;
+                                document.getElementById("s").innerHTML=sc;
+                            }
+                        });
+                        console.log(cnt)
+                        if(cnt!=ans13.length){
+                            musicWA.play();
+                            alert("答案:\n胎->臺\n竟->盡\n牢->撈\n意->一");
+                        }
+                        else{
+                            musicAC.play();
+                        }
+                }
+                else if(num==14){
+                    cnt=0;
+                    ans.forEach(function(value){
+                            console.log(value)
+                            console.log(ans4.includes(value));
+                            if(ans14.includes(value)){
+                                cnt++;
+                                sc+=2.5;
+                                document.getElementById("s").innerHTML=sc;
+                            }
+                            else{
+                                sc-=2.5;
+                                if(sc<0) sc=0;
+                                document.getElementById("s").innerHTML=sc;
+                            }
+                        });
+                        console.log(cnt)
+                        if(cnt!=ans14.length){
+                            musicWA.play();
+                            alert("答案:\n西->喜\n折->著\n牢->撈\n意->一");
+                        }
+                        else{
+                            musicAC.play();
+                        }
+                    
+                }
+                localStorage.setItem("nowScore",sc);
+                ans.clear();
+                for(var j=0;j<80;j++){
+                    bu[j]=0;
+                        
+                }
+                num++;
+                if(num==15){
+                    finishGame();
+                    document.getElementById("contain").style.display="none";
+                }
+                else {
+                   document.getElementById("pic").setAttribute("src","img/稿紙"+num+".jpg");
+             
+                    W();
+                }
+            })
+            var timer=function() {
+            // 當前時間。
+            //console.log(startTime)
+                currentTime = new Date().getTime();
+                
+                // 當前時間 - 起始時間 = 經過時間。(因為不需要毫秒，所以將結果除以1000。)
+                var diffSec = Math.round((currentTime - startTime) / 1000);
+                
+                // 目標時間 - 經過時間 = 剩餘時間。
+                var remainingTime = targetSeconds - diffSec;
+                
+                // update progess.  
+                update(remainingTime);   
+            
+                if (remainingTime == 0) {
+                    // stop the timer.
+                    clearInterval(timerId); 
+                    finishGame();
+                    document.getElementById("contain").style.display="none";
+                } 
+                
+               
+            }
+            function update (seconds) {
+            barRenderer(seconds);
+            textRenderer(seconds);
+            }
+            // refresh the bar.
+            function barRenderer (seconds) {
+            var percent = (seconds / targetSeconds) * 100;
+            $(".bar").css("width", percent + "%");
+            }
+            // refresh the text of the bar.
+            function textRenderer (seconds) {
+            var sec = seconds % 60;  
+            var min = Math.floor(seconds / 60); 
+            /* 兩種作法都可以 */
+            //min = min > 9 ? min : "0" + min;
+            //sec = sec > 9 ? sec : "0" + sec;  
+            min = min.toString().padStart(2, '0');
+            sec = sec.toString().padStart(2, '0');
+            
+            $(".text").text(min + ":" + sec);   
+            }
+            
+            function W(){
+                    var a=0;
+                    for(var j=0;j<word[num].length;j++){
+                        document.getElementById("w"+j).value=word[num][j];
+                        document.getElementById("w"+j).style.position='absolute';
+                        document.getElementById("w"+j).style.left=970-parseInt(j/8)*96+"px";
+                        document.getElementById("w"+j).style.top=120+a*70+"px";
+                        a++;
+                        if(a==8)    a=0;
+                    }
+                    for(var i=word[num].length+30;i<=79;i++){
+                        document.getElementById("w"+i).style.display="none";
+                    }
+               
+            
+           }
+           document.onclick=function(){
+                var obj = event.srcElement; 
+                if(obj.type == "button"&&obj.id!='start'&&obj.id!='end'&&obj.id!='finish'){ 
+                    console.log(parseInt(obj.id.substring(1)))
+                    if(bu[parseInt(obj.id.substring(1))]==0){
+                        ans.add(obj.id);
+                        bu[parseInt(obj.id.substring(1))]=1;
+                        document.getElementById(obj.id).style.border="2px red solid";
+                        document.getElementById(obj.id).style.borderRadius="3000px";
+                    }
+                    else{
+                        ans.delete(obj.id);
+                        document.getElementById(obj.id).style.border="transparent";
+                        document.getElementById(obj.id).style.borderRadius="3000px";
+                        bu[parseInt(obj.id.substring(1))]=0;
+                    }
+                    
+                    console.log(ans);
+                } 
+            } 
+            function finishGame(){
+                document.getElementById("containerFinish").style.display="block";
+            }
+	    </script>
+    </body>
+</html>

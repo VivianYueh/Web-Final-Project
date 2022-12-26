@@ -1,0 +1,122 @@
+[
+    {
+        "questionWord":"When Jeffery doesn’t feel like cooking, he often orders pizza online and has it ______ to his house.",
+        "answerA":"advanced",
+        "answerB":"delivered",
+        "answerC":"offered",
+        "answerD":"stretched",
+        "finalAnswer":"B"
+    },
+    {
+        "questionWord":"After watching a TV program on natural history, Adam decided to go on a ______ for dinosaur fossils in South Dakota.",
+        "answerA":"trial",
+        "answerB":"route",
+        "answerC":"strike",
+        "answerD":"quest",
+        "finalAnswer":"D"
+    },
+    {
+        "questionWord":"Hidden deep in a small alley among various tiny shops, the entrance of the Michelin star restaurant is barely ______ to passersby.",
+        "answerA":"identical",
+        "answerB":"visible",
+        "answerC":"available",
+        "answerD":"remarkable",
+        "finalAnswer":"B"
+    },
+    {
+        "questionWord":"Peter is afraid of the dark. He even leaves ______ the on when sleeping.",
+        "answerA":"computer",
+        "answerB":"fans",
+        "answerC":"lights",
+        "answerD":"music",
+        "finalAnswer":"C"
+    },
+    {
+        "questionWord":"You were ______ not to lend Amy money. She never gives back what she borrows.",
+        "answerA":"crazy",
+        "answerB":"helpful",
+        "answerC":"wise",
+        "answerD":"wrong",
+        "finalAnswer":"C"
+    },
+    {
+        "questionWord":"Although it took me lots of time ______ a big meal for ten people, I was happy that everyone enjoyed it.",
+        "answerA":"prepare",
+        "answerB":"to prepare",
+        "answerC":"preparing",
+        "answerD":"prepared",
+        "finalAnswer":"B"
+    },
+    {
+        "questionWord":"The ______ is so strong today that my hair keeps blowing in the air.",
+        "answerA":"rain",
+        "answerB":"snow",
+        "answerC":"sun",
+        "answerD":"wind",
+        "finalAnswer":"D"
+    },
+    {
+        "questionWord":"The woman who lives next door to Ken is a ______ to him. They have never met and he doesn’t even know her name. ",
+        "answerA":"daughter",
+        "answerB":"friend",
+        "answerC":"stranger",
+        "answerD":"teacher",
+        "finalAnswer":"C"
+    },
+    {
+        "questionWord":"The factory has been throwing trash into the river for years. Now ______ must be taken to stop this.",
+        "answerA":"action",
+        "answerB":"chances",
+        "answerC":"exercise",
+        "answerD":"notes",
+        "finalAnswer":"A"
+    },
+    {
+        "questionWord":"Elderly shoppers in this store are advised to take the elevator rather than the _____, which may move too fast for them to keep their balance.",
+        "answerA":"airway",
+        "answerB":"operator",
+        "answerC":"escalator",
+        "answerD":"instrument",
+        "finalAnswer":"C"
+    },
+    {
+        "questionWord":"The skydiver managed to land safely after jumping out of the aircraft, even though her _____ failed to open in midair.",
+        "answerA":"glimpse",
+        "answerB":"latitude",
+        "answerC":"segment",
+        "answerD":"parachute",
+        "finalAnswer":"D"
+    },
+    {
+        "questionWord":"The 2011 Nobel Peace Prize was awarded _____ to three women for the efforts they made in fighting for women’s rights.",
+        "answerA":"actively",
+        "answerB":"earnestly",
+        "answerC":"jointly",
+        "answerD":"naturally",
+        "finalAnswer":"C"
+    },
+    {
+        "questionWord":"The non-profit organization has _____ $1 million over five years to finance the construction of the medical center.",
+        "answerA":"equipped",
+        "answerB":"resolved",
+        "answerC":"committed",
+        "answerD":"associated",
+        "finalAnswer":"C"
+    },
+    {
+        "questionWord":"Since many of our house plants are from humid jungle environments, they need _____ air to keep them green and healthy.",
+        "answerA":"moist",
+        "answerB":"stale",
+        "answerC":"crisp",
+        "answerD":"fertile",
+        "finalAnswer":"A"
+    },
+    {
+        "questionWord":"Upon hearing its master’s call, the dog wagged its tail, and followed her out of the room _____.",
+        "answerA":"obediently",
+        "answerB":"apparently",
+        "answerC":"logically",
+        "answerD":"thoroughly",
+        "finalAnswer":"A"
+    }
+]

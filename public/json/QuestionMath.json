@@ -1,0 +1,123 @@
+[
+    {
+        
+        "questionWord":"有八棟大廈排成一列，由左至右分別編號 1,2,3,4,5,6,7,8。今電信公司想選取其中三棟大廈的屋頂分別設立一座電信基地台。若基地台不能設立於相鄰的兩棟大廈，以免訊號互相干擾，試問在 3 號大廈不設立基地台的情況下，有多少種設立基地台的選取方法？",
+        "answerA":"12",
+        "answerB":"13",
+        "answerC":"20",
+        "answerD":"23",
+        "finalAnswer":"B"
+    },
+    {
+        "questionWord":"下列何者為 156 的質因數？",
+        "answerA":"11",
+        "answerB":"12",
+        "answerC":"13",
+        "answerD":"14",
+        "finalAnswer":"C"
+    },
+    {
+        "questionWord":"sqrt(2022) 的值介於下列哪兩個數之間？",
+        "answerA":"25，30",
+        "answerB":"30，35",
+        "answerC":"35，40",
+        "answerD":"40，45",
+        "finalAnswer":"D"
+    },
+    {
+        "questionWord":"算式 (−8) + (−2) × (−3) 之值為何？",
+        "answerA":"−14",
+        "answerB":"-2",
+        "answerC":"18",
+        "answerD":"30",
+        "finalAnswer":"B"
+    },
+    {
+        "questionWord":"5^6 是 5^3 的多少倍？",
+        "answerA":"2",
+        "answerB":"3",
+        "answerC":"125",
+        "answerD":"225",
+        "finalAnswer":"C"
+    },
+    {
+        "questionWord":"將一半徑為 6 的圓形紙片，沿著兩條半徑剪開形成兩個扇形。若其中一個扇形的弧長為 5 π ，則另一個扇形的圓心角度數是多少？",
+        "answerA":"30",
+        "answerB":"60",
+        "answerC":"105",
+        "answerD":"210",
+        "finalAnswer":"D"
+    },
+    {
+        "questionWord":"若a、b為正整數，且 a×b=25×32x5，則下列何者不可能為a、b的最大公因數？",
+        "answerA":"1",
+        "answerB":"6",
+        "answerC":"8",
+        "answerD":"12",
+        "finalAnswer":"C"
+    },
+    {
+        "questionWord":"已知 a=(−12)×(−23)×(−34)×(−45)，b=(−123)×(−234)×(−345)，判斷下列敘述何者正確？",
+        "answerA":"a、b皆為正數",
+        "answerB":"a、b皆為負數",
+        "answerC":"a為正數，b為負數",
+        "answerD":"a為負數，b為正數",
+        "finalAnswer":"C"
+    },
+    {
+        "questionWord":"小真煮好了 25 顆湯圓，其中 15 顆為芝麻湯圓，10 顆為花生湯圓。已知小真想從煮好的湯圓中撈一顆，若每顆湯圓被小真撈到的機會相等，則他撈到花生湯圓的機率為何？",
+        "answerA":"1/2",
+        "answerB":"2/3",
+        "answerC":"2/5",
+        "answerD":"1/10",
+        "finalAnswer":"C"
+    },
+    {
+        "questionWord":"算式 sqrt(2) × ( sqrt(48) − sqrt(12) ) 之值為何？",
+        "answerA":"6根號2",
+        "answerB":"2根號6",
+        "answerC":"2根號21",
+        "answerD":"4根號6",
+        "finalAnswer":"B"
+    },
+    {
+        "questionWord":"下列何者可表示成兩個質數的乘積？",
+        "answerA":"81",
+        "answerB":"82",
+        "answerC":"83",
+        "answerD":"84",
+        "finalAnswer":"B"
+    },
+    {
+        "questionWord":"中秋節時阿柚製作的廣式月餅、蛋黃酥、鳳梨酥的數量比為 2 ： 1 ： 3 ，其中只有製作廣式月餅和蛋黃酥時使用鹹蛋黃。若阿柚製作每個廣式月餅時使用 2 顆鹹蛋黃，製作每個蛋黃酥時使用 1 顆鹹蛋黃，且總共使用 120 顆鹹蛋黃，則他製作了幾個鳳梨酥？",
+        "answerA":"45",
+        "answerB":"60",
+        "answerC":"72",
+        "answerD":"120",
+        "finalAnswer":"C"
+    },
+    {
+        "questionWord":"已知坐標平面上， 一次函數 y = 3x + a 的圖形通過點 (0 , −4)，其中 a 為一數，求 a 的值為何？",
+        "answerA":"-12",
+        "answerB":"-4",
+        "answerC":"4",
+        "answerD":"12",
+        "finalAnswer":"B"
+    },
+    {
+        "questionWord":"若二元一次聯立方程式 7x − 3y = 8 , 3x − y = 8的解為 x = a ， y = b，則 a + b 之值為何？",
+        "answerA":"24",
+        "answerB":"0",
+        "answerC":"-4",
+        "answerD":"-8",
+        "finalAnswer":"A"
+    },
+    {
+        "questionWord":"若小舒從 1 ~ 50 的整數中挑選 4 個數，使其由小到大排序後形成一等差數列，且 4 個數中最小的是 7，則下列哪一個數不可能出現在小舒挑選的數之中？",
+        "answerA":"20",
+        "answerB":"25",
+        "answerC":"30",
+        "answerD":"35",
+        "finalAnswer":"C"
+    }
+]

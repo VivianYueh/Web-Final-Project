@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>遊戲主題</title>
+    
+    <style>
+        @import url(https://fonts.googleapis.com/earlyaccess/cwtexyen.css);
+        body {
+            min-height: 100%;
+            background: rgba(255, 226, 246, 0.614);
+            font-family: cwTexYen,'Comfortaa', sans-serif;
+            padding-bottom: 40px;
+            user-select: none;
+        }
+        .container {
+            width: 50%;
+            background: rgb(255, 249, 253);
+            box-shadow: 1px 1px 5px #3e3e3ec3;
+            margin: 0px auto 0px;
+            border-radius: 3px;
+            padding: 15px;
+            margin-top: 30px;
+            font-size: 200%;
+            text-align: center;
+            cursor: pointer;
+            font-weight: bold;
+            user-select: none;
+        }
+        #title{
+                font-size: 300%;
+                font-weight: bold;
+                text-align: center;
+                color: rgb(183, 77, 77);
+            }
+    </style>
+    <script>
+        function start(){
+            let chooseEasy = document.getElementById("mode1").addEventListener("mouseover",changeMode1,false);
+            let chooseNormal = document.getElementById("mode2").addEventListener("mouseover",changeMode2,false);
+            let chooseHard = document.getElementById("mode3").addEventListener("mouseover",changeMode3,false);
+            let chooseExpert = document.getElementById("mode4").addEventListener("mouseover",changeMode4,false);
+        }
+        function changeMode1(){
+            localStorage.setItem("nowChooseObj", "國文");
+            music.play();
+        }
+        function changeMode2(){
+            localStorage.setItem("nowChooseObj", "數學");
+            music.play();
+        }
+        function changeMode3(){
+            localStorage.setItem("nowChooseObj", "英文");
+            music.play();
+        }
+        function changeMode4(){
+            localStorage.setItem("nowChooseObj", "綜合");
+            music.play();
+        }
+        window.addEventListener("load",start,false);
+    </script>
+</head>
+<body>
+    <audio id="music" preload="true"><source src="voice/click.mp3" type="audio/mp3"></audio>
+    <div id="title">選擇遊戲主題</div>
+    <div class="container" id="mode1" onclick="location.href='selectGameMode2.html'">國文 </div>
+    <div class="container" id="mode2" onclick="location.href='selectGameMode2.html'">數學</div>
+    <div class="container" id="mode3" onclick="location.href='selectGameMode2.html'">英文</div>
+    <div class="container" id="mode4" onclick="location.href='selectGameMode2.html'">綜合</div>
+</body>
+</html>

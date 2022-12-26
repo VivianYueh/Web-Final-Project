@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>人物介面</title>
+        <link rel="stylesheet" type="text/css"  href="https://fonts.googleapis.com/css?family=Comfortaa">
+        <style type="text/css">
+            @import url(https://fonts.googleapis.com/earlyaccess/cwtexyen.css);
+            body {
+                background-color: rgb(251, 239, 241);
+                font-family: cwTexYen,'Comfortaa', sans-serif;
+                user-select: none;
+            }
+            #title{
+                font-size: 300%;
+                font-weight: bold;
+                text-align: center;
+                color: rgb(183, 77, 77);
+            }
+            img{
+                width: 280px;
+                height: 280px;
+                cursor: pointer;
+            }
+            .image{
+                display: flex;
+            }
+            div .pict{
+                width: 40%;
+                justify-content: center;
+                text-align: center;
+                font-size: 200%;
+            }
+            div .ouo{
+                width: 10%;
+            }
+            #choosePeople{
+                font-size: 300%;
+                font-weight: bold;
+                text-align: center;
+                color: rgb(183, 77, 77);
+            }
+            .div1{
+                left:35%;
+                min-width: 30%;
+                width: fit-content;
+                height:fit-content;
+                text-align: center;
+                vertical-align:middle;
+                padding:5px;
+                color:black;
+                font-size: 250%;
+                margin: auto;
+                cursor: pointer;
+            }
+            .div1:hover{
+                background-color: rgb(250, 220, 225);
+                border: 5px rgba(150, 151, 137, 0.82) solid;
+                box-sizing: border-box;
+            }
+        </style>
+        <script>
+            let nowChoose=1;
+            function start(){
+                localStorage.setItem("nowChoose", "阿琦");
+                var sound = document.getElementById("div1").addEventListener("mouseover",musicPlay,false);
+                let clickCharater = document.getElementById("pict1").addEventListener("click",changePicture1Clolr,false);
+                let clickCharater2 = document.getElementById("pict2").addEventListener("click",changePicture1Clolr2,false);
+            }
+           
+            function changePicture1Clolr(){
+                let clickCharater = document.getElementById("pict1").style="border:8px burlywood solid";
+                let clickCharater2 = document.getElementById("pict2").style="border:0px burlywood solid";
+                let chooseName=document.getElementById("yourChoose").innerHTML="阿琦";
+                nowChoose=1;
+                musicPlay();
+                console.log(nowChoose);
+                localStorage.setItem("nowChoose", "阿琦");
+            }
+            function changePicture1Clolr2(){
+                let clickCharater = document.getElementById("pict2").style="border:8px burlywood solid";
+                let clickCharater2 = document.getElementById("pict1").style="border:0px burlywood solid";
+                let chooseName=document.getElementById("yourChoose").innerHTML="阿薰";
+                nowChoose=2;
+                musicPlay();
+                console.log(nowChoose);
+                localStorage.setItem("nowChoose", "阿薰");
+            }
+            function musicPlay(){
+                if(music.paused)music.play();
+            }
+            window.addEventListener("load",start,false);
+        </script>
+    </head>
+
+    <body>
+        <audio id="music" preload="true"><source src="voice/click.mp3" type="audio/mp3"></audio>
+        <br>
+        <div id="title">選擇你的人物</div>
+        <br><br>
+        <div class="image">
+            <div class="ouo"></div>
+            <div class="pict">
+                <img id="pict1"src="img/rilakkuma.png" style="border:8px burlywood solid">
+            </div>
+            <div class="pict">
+                <img id="pict2" src="img/rilakkuma2.png" >
+            </div>
+            <div class="ouo"></div>
+        </div>
+        <br>
+        <div id="choosePeople">你的選擇是<span id="yourChoose">阿琦</span></div>
+        <br>
+        <div class="div1" id="div1" onclick="location.href='chooseLevel.html'">Start Game</div>
+    </body>
+</html>

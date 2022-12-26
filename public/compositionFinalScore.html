@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>compositionScore</title>
+        <link rel="stylesheet" type="text/css"  href="https://fonts.googleapis.com/css?family=Comfortaa">
+        <style type="text/css">
+            @import url(https://fonts.googleapis.com/earlyaccess/cwtexyen.css);
+            body {
+                background-color: rgb(251, 239, 241);
+                font-family: cwTexYen,'Comfortaa', sans-serif;
+            }
+            #in {
+                width: 50%;
+                background: rgb(255, 249, 253);
+                box-shadow: 1px 1px 5px #3e3e3ec3;
+                margin: 0px auto 0px;
+                border-radius: 3px;
+                padding: 15px;
+                margin-top: 30px;
+                font-size: 200%;
+                text-align: center;
+                cursor: pointer;
+                font-weight: bold;
+                user-select: none;
+                color: rgb(183, 77, 77);
+            }
+            #upload{
+                text-align: center;
+                font-size: 150%;
+            }
+            input[type=button]{
+                background-color: #f5c3cc;
+                cursor: pointer;
+                border: #f4b8c3 3px solid;border-radius: 15px;
+            }
+        </style>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+        <script>
+            let arr=["chooseLevel","finalscore","score","comment"];
+            let score=["","","",""];
+            let finalComment=["你要來不及了!","一目十行說的就是你!","安全過關!","再加把勁!!","多讀點字音字形吧!"]
+            let star=["★★★★★","★★★★☆","★★★☆☆","★★☆☆☆","★☆☆☆☆"];
+            let cnt=0;let tmp="";let cntTime;
+            function start(){
+                score[0]=localStorage.getItem("nowChooseLevel");
+                score[1]=localStorage.getItem("nowScore");
+                scoreCount();
+                setInterval(addWord,800);
+            }
+            $(document).ready(function(){
+                $("#uploadScore").on("click",function(){
+                    //localhos:3000/upload
+                    alert("上傳成功!");
+                    let Name = document.getElementById("name").value;
+                    let Time = localStorage.getItem("nowScore");
+                    let level = localStorage.getItem("nowChooseLevel");
+                    console.log(level);
+                    $.post("/upload",{name:Name,Score:Time,Object:"作文",Level:level},function(res){
+                    });
+                    document.getElementById("uploadScore").disabled=true;
+                });
+            });
+            function addWord(){
+                if(cnt==5)return;
+                if(cnt==4){
+                    document.getElementById("upload").style.display="block";
+                    return;
+                }
+                console.log(arr[cnt]);
+                document.getElementById(arr[cnt]).innerHTML=score[cnt];
+                cnt++;
+            }
+            function scoreCount(){
+               var sc=localStorage.getItem("nowScore");
+               var Level = localStorage.getItem("nowChooseLevel");
+               if(Level=="輕鬆"){
+                    if(sc>=95){
+                    score[3]=finalComment[1];
+                    score[2]=star[0];
+                    console.log(score[2])
+                }
+                if(sc>=90&&sc<95){
+                    score[3]=finalComment[3];
+                    score[2]=star[1];
+                }
+                if(sc>=80&&sc<90){
+                    score[3]=finalComment[0];
+                    score[2]=star[2];
+                }
+                if(sc>=70&&sc<80){
+                    score[3]=finalComment[2];
+                    score[2]=star[3];
+                }
+                if(sc<70){
+                    score[3]=finalComment[4];
+                    score[2]=star[4];
+                }
+               }
+               else if(Level=="中等"){
+                    if(sc>=90){
+                    score[3]=finalComment[1];
+                    score[2]=star[0];
+                    console.log(score[2])
+                }
+                if(sc>=85&&sc<90){
+                    score[3]=finalComment[3];
+                    score[2]=star[1];
+                }
+                if(sc>=75&&sc<85){
+                    score[3]=finalComment[0];
+                    score[2]=star[2];
+                }
+                if(sc>=65&&sc<75){
+                    score[3]=finalComment[2];
+                    score[2]=star[3];
+                }
+                if(sc<65){
+                    score[3]=finalComment[4];
+                    score[2]=star[4];
+                }
+               }
+               else if(Level=="挑戰"){
+                    if(sc>=85){
+                    score[3]=finalComment[1];
+                    score[2]=star[0];
+                    console.log(score[2])
+                }
+                if(sc>=80&&sc<85){
+                    score[3]=finalComment[3];
+                    score[2]=star[1];
+                }
+                if(sc>=70&&sc<80){
+                    score[3]=finalComment[0];
+                    score[2]=star[2];
+                }
+                if(sc>=60&&sc<70){
+                    score[3]=finalComment[2];
+                    score[2]=star[3];
+                }
+                if(sc<60){
+                    score[3]=finalComment[4];
+                    score[2]=star[4];
+                }
+               }
+               else if(Level=="專精"){
+                    if(sc>=80){
+                    score[3]=finalComment[1];
+                    score[2]=star[0];
+                    console.log(score[2])
+                }
+                if(sc>=75&&sc<80){
+                    score[3]=finalComment[3];
+                    score[2]=star[1];
+                }
+                if(sc>=65&&sc<75){
+                    score[3]=finalComment[0];
+                    score[2]=star[2];
+                }
+                if(sc>=55&&sc<65){
+                    score[3]=finalComment[2];
+                    score[2]=star[3];
+                }
+                if(sc<55){
+                    score[3]=finalComment[4];
+                    score[2]=star[4];
+                }
+               }
+            }
+            window.addEventListener("load",start,false);
+        </script>
+    </head>
+
+    <body>
+        <audio id="music" autoplay="ture" loop="ture" preload="true"><source src="voice/No Doubt - Yung Logos.mp3" type="audio/mp3"></audio>
+        <div id="in">
+            <br>
+            <div id="title">你的成績</div><br>
+            <div>所選難度：<span id="chooseLevel" ></span></div><br>
+            <div>最終得分：<span id="finalscore" ></span></div><br>
+            <div>最終評分：<span id="score"></span></div><br>
+            <div>評語：<span id="comment"></span></div><br>
+            
+        </div>
+        <br>
+        <div id="upload" style="display: none;user-select: none;">
+            你的姓名: <input type="text" placeholder="star" id="name">
+            <input type="button" value="上傳分數至排行榜" id="uploadScore">
+            <span>  </span>
+            <input type="button" value="查看排行榜" onclick="location.href='leaderboard.html'">
+        </div>
+    </body>
+</html>
