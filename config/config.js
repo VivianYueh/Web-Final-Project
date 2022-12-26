@@ -2,7 +2,7 @@ const config ={
     app:{port:3000
     },
     db:{
-        url:"mongodb+srv://cluster0.m2ieehp.mongodb.net/myFirstDatabase"
+        url:"mongodb+srv://starstar:starstar415@scoreboard.uzymbhg.mongodb.net/?retryWrites=true&w=majority"
     }
 };
 module.exports=config;
