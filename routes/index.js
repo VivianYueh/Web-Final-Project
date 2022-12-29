@@ -14,7 +14,7 @@ router.post(/upload/, async function(req, res) {
   });
 });
 
-router.get(/scoreboard/, async function(req, res) {
+router.get(/scoreBoard/, async function(req, res) {
   let data = await Todo.find({});
   res.send({data});
 });
