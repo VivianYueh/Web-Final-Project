@@ -30,6 +30,25 @@
         #Continue:hover{
             background-color: pink;
         }
+        .return{
+            position: absolute;
+            top:5px;
+            left: 5px;
+            background: rgb(248, 231, 242);
+            min-width: 8%;
+            text-align: center;
+            width: fit-content;
+            font-size: 250%;
+            border:solid 3px rgb(242, 160, 213);
+            box-shadow: 5px 5px 5px #3e3e3ec3;
+            float: left;
+            padding:5px;
+            
+        }
+        .return:hover{
+            background-color: pink;
+            color: white;
+        }
     </style>
     <script>
         let introduceString = "    demo助教要在整間教室快速移動，也要觀察不同同學問問題的先後順序，並且會有各式各樣的問題，你的朋友小星為一位demo助教，每周都要訓練自己的觀察能力以及回答問題的各種方法，他發現在demo的過程中除了可以教導大家，也可以強化自身的能力。但是小星突然生病必須請假，你決定要幫助小星代班。為了代班，你想要先準備各種知識，以防回答不出同學的問題，小星為了你準備了幾個題庫，從中學習並完成代班的任務吧!!";
@@ -55,6 +74,7 @@
     </script>
 </head>
 <body>
+    <div class="return" onclick="location.href='selectGameObj2.html'">skip</div>
     <div class="container" id="container">
         <div id="Word">　　</div>
         <div id="Continue" style="float:right" onclick="location.href='selectGameObj2.html'"></div>

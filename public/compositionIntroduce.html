@@ -29,6 +29,25 @@
         #Continue:hover{
             background-color: pink;
         }
+        .return{
+            position: absolute;
+            top:5px;
+            left: 5px;
+            background: rgb(248, 231, 242);
+            min-width: 8%;
+            text-align: center;
+            width: fit-content;
+            font-size: 250%;
+            border:solid 3px rgb(242, 160, 213);
+            box-shadow: 5px 5px 5px #3e3e3ec3;
+            float: left;
+            padding:5px;
+            
+        }
+        .return:hover{
+            background-color: pink;
+            color: white;
+        }
     </style>
     <script>
         let introduceString = "    國文作文每篇都需要仔細、再三地看，才能找出同學們在文章中的錯誤及優點，然而隨著期末的到來，事情越來越多，時間越來越少，雪上加霜的是糊塗的老師竟然忘記作文批改期限，你的朋友小伶直到期限的前一周才拿到作文，眼看截止期限慢慢逼近，小伶的手邊還有70篇作文，善良的你決定助她一臂之力，幫忙批改一部份作文。請幫助小伶，在時限內找出同學所犯的錯誤並成功批改作文順利度過期末吧QQ";
@@ -54,6 +73,7 @@
     </script>
 </head>
 <body>
+    <div class="return" onclick="location.href='selectGameMode.html'">skip</div>
     <div class="container" id="container">
         <div id="Word">　　</div>
         <div id="Continue" style="float:right" onclick="location.href='selectGameMode.html'"></div>
